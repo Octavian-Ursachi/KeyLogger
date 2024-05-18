@@ -12,7 +12,6 @@ namespace IP
 
     public class SocketWriter
     {
-        private static bool ocupat = false;
         private static Socket SochetTrimitere;
         private static string BufferMesajeTrimitere;
         private static Thread ThreadTrimitere;
@@ -26,25 +25,42 @@ namespace IP
                     {
                         SochetTrimitere = new Socket(SocketType.Stream, ProtocolType.Tcp);
                     }
-                    else
+                    if (SochetTrimitere.IsBound == false)
                     {
-                        if (SochetTrimitere.IsBound == false)
+                        SochetTrimitere.Bind(new IPEndPoint(IPAddress.Any, 0));
+                        Console.WriteLine("incerc sa ma conectez..");
+                    }
+                    if(SochetTrimitere.Connected == false)
+                    {
+                        SochetTrimitere.Connect(new IPEndPoint(new IPAddress(0x0100007f), 2000));
+                        Console.WriteLine("Conectat remote >=)");
+                    }
+                    try
+                    {
+                        if (SochetTrimitere.Connected == false || SochetTrimitere.Available > 0)
                         {
-                            SochetTrimitere.Bind(new IPEndPoint(IPAddress.Any, 0));
+                            Console.WriteLine("Am inchis sochetul!");
+                            SochetTrimitere.Close();
+                            SochetTrimitere = null;
                         }
                         else
                         {
-                            if (SochetTrimitere.Connected == false)
-                            {
-                                SochetTrimitere.Connect(new IPEndPoint(new IPAddress(0x0100007f), 8085));
-                                Console.WriteLine("Conectat remote >=)");
-                            }
-                            else
-                            {
-                                SochetTrimitere.Send(Encoding.ASCII.GetBytes(BufferMesajeTrimitere));
-                                BufferMesajeTrimitere = "";
-                            }
+                            SochetTrimitere.Send(Encoding.ASCII.GetBytes(BufferMesajeTrimitere));
+                            BufferMesajeTrimitere = "";
                         }
+                    }
+                    catch(SocketException e)
+                    {
+                        Console.WriteLine("Nu m-am conectat remote pentru ca: "+e.Message);
+                        SochetTrimitere.Close();
+                        SochetTrimitere = null;
+                    }
+                    catch (InvalidOperationException e)
+                    {
+                        Console.WriteLine("Refac sochetul pentru ca: "+e.Message);
+                        SochetTrimitere.Close();
+                        SochetTrimitere = null;
+                        //SochetTrimitere = new Socket(SocketType.Stream, ProtocolType.Tcp);
                     }
                 }
             }
@@ -55,7 +71,7 @@ namespace IP
                 ThreadTrimitere.IsBackground = true;
                 ThreadTrimitere.Start();
             }
-            BufferMesajeTrimitere += mesaj;
+            BufferMesajeTrimitere += mesaj+" ";
         }
     }
 }

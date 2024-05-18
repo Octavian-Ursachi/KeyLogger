@@ -36,5 +36,15 @@ namespace Interfata_Urata
         {
 
         }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            string TastePrimite = SocketReceiver.CitesteDate();
+            textBox3.Text = SocketReceiver.ExceptieSochet;
+            if (TastePrimite != "")
+            {
+                textBox1.Text += TastePrimite;
+            }
+        }
     }
 }
