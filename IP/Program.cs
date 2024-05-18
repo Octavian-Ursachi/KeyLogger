@@ -16,14 +16,14 @@ namespace IP
         {
             LoggerWriter logger = new LoggerWriter();
             Interfata_Finala UI = new Interfata_Finala();
-            //LLKeyboardHook hook = new LLKeyboardHook(UI, logger);
+            LLKeyboardHook hook = new LLKeyboardHook(UI, logger);
 
-            //hook.Install();
+            hook.Install();
 
             Application.EnableVisualStyles();
             Application.Run(UI);
 
-            //hook.Uninstall();
+            hook.Uninstall();
 
         }
     }
