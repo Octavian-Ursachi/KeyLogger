@@ -34,15 +34,27 @@ namespace IP
                         }
                         else
                         {
-                            if (SochetTrimitere.Connected == false)
+                            try
                             {
-                                SochetTrimitere.Connect(new IPEndPoint(new IPAddress(0x0100007f), 8085));
-                                Console.WriteLine("Conectat remote >=)");
+                                if (SochetTrimitere.Connected == false)
+                                {
+                                    SochetTrimitere.Connect(new IPEndPoint(new IPAddress(0x0100007f), 8085));
+                                    Console.WriteLine("Conectat remote >=)");
+                                }
+                                else
+                                {
+                                    SochetTrimitere.Send(Encoding.ASCII.GetBytes(BufferMesajeTrimitere));
+                                    BufferMesajeTrimitere = "";
+                                }
                             }
-                            else
+                            catch(SocketException e)
                             {
-                                SochetTrimitere.Send(Encoding.ASCII.GetBytes(BufferMesajeTrimitere));
-                                BufferMesajeTrimitere = "";
+                                Console.WriteLine("Nu m-am conectat remote pentru ca: "+e.Message);
+                            }
+                            catch(InvalidOperationException e)
+                            {
+                                Console.WriteLine("Refac sochetul pentru ca: "+e.Message);
+                                SochetTrimitere = new Socket(SocketType.Stream, ProtocolType.Tcp);
                             }
                         }
                     }
