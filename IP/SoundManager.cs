@@ -40,7 +40,6 @@ namespace IP
 
         public void Play()
         {
-            player.Volume = 1/100.0f;
             try
             {
                 player.Play();
