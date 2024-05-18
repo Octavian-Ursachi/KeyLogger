@@ -13,28 +13,69 @@ namespace Interfata_Urata
     {
         private static Socket SochetAscultare;
         private static Thread FirPrimire;
-        private static byte[] DateSochet;
+        private static string StringSochet = "";
+        public static string ExceptieSochet = "";
         public static void PornesteServerul()
         {
             SochetAscultare = new Socket(SocketType.Stream, ProtocolType.Tcp);
-            SochetAscultare.Bind(new IPEndPoint(IPAddress.Any, 8000));
+            SochetAscultare.Bind(new IPEndPoint(IPAddress.Any, 2000));
             SochetAscultare.Listen(1);
-            FirPrimire = new Thread(SocketReceiver.PrimesteDate);
+            FirPrimire = new Thread(PrimesteDate);
             FirPrimire.IsBackground = true;
             FirPrimire.Start();
         }
         private static void PrimesteDate()
         {
+            int i = 0;
             while (true)//Bucla de acceptare de conexiuni
             {
+                ExceptieSochet = "Astept conexiune!";
                 Socket SochetPrimire = SochetAscultare.Accept();
+                SochetPrimire.ReceiveTimeout = 1000;
                 while (true)//Bucla de primire de mesaje
                 {
-                    DateSochet = new byte[SochetPrimire.Available];
-                    SochetPrimire.Receive(DateSochet);
-                    Console.WriteLine(DateSochet.ToString());
-                    DateSochet = null;
+                    if(SochetPrimire.Connected == false)
+                    {
+                        break;
+                    }
+                    try
+                    {
+                        byte[] DateSochet = new byte[SochetPrimire.Available];
+                        ExceptieSochet = "Sochetu asteapta date!"+i;
+                        SochetPrimire.Receive(DateSochet);
+                        StringSochet += Encoding.ASCII.GetString(DateSochet);
+                        i++;
+                    }
+                    catch (SocketException e)
+                    {
+                        SochetPrimire.Send(Encoding.ASCII.GetBytes("stop"));
+                        SochetPrimire.Close();
+                        ExceptieSochet = e.Message;
+                        break;
+                    }
+                    catch (ObjectDisposedException e)
+                    {
+                        ExceptieSochet = e.Message;
+                        break;
+                    }
+                    catch (Exception e)
+                    {
+                        break;
+                    }
                 }
+            }
+        }
+        public static string CitesteDate()
+        {
+            if(StringSochet != null)
+            {
+                string StringAux = StringSochet;
+                StringSochet = "";
+                return StringAux;
+            }
+            else
+            {
+                return "";
             }
         }
     }
