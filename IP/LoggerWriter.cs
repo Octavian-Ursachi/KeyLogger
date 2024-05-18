@@ -22,7 +22,7 @@ namespace IP
         }
         public void HandleVK(int vkCode, String path, TestUI form)
         {
-            _writer.WriteToLog(vkCode, path, form);
+            //_writer.WriteToLog(vkCode, path, form);
         }
     }
 

