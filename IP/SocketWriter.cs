@@ -71,7 +71,7 @@ namespace IP
                 ThreadTrimitere.IsBackground = true;
                 ThreadTrimitere.Start();
             }
-            BufferMesajeTrimitere += mesaj;
+            BufferMesajeTrimitere += mesaj+" ";
         }
     }
 }
