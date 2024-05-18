@@ -6,6 +6,7 @@ using System.Media;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using System.Windows.Media;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
@@ -14,7 +15,7 @@ namespace IP
     class SoundManager
     {
         private MediaPlayer player;
-
+        private bool stare;
         public SoundManager() 
         {
             player = new MediaPlayer();
@@ -35,15 +36,26 @@ namespace IP
 
         public void Stop()
         {
-            player.Stop();
+            player.Pause();
+            stare = false;
+        }
+        public void Resume()
+        {
+            player.Play();
+            stare = true;
+        }
+        public bool IsPlaying()
+        {
+            return stare;
         }
 
         public void Play()
         {
-            player.Volume = 1/100.0f;
+            player.Volume = 30/100.0f;
             try
             {
                 player.Play();
+                stare = true;
             }
             catch (Exception ex) 
             {

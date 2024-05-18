@@ -14,12 +14,13 @@ namespace IP
 {
     public partial class Interfata_Finala : Form
     {
-
+        private SoundManager BoxaPortabila;
         public Interfata_Finala()
         {
           
             InitializeComponent();
-
+            BoxaPortabila = new SoundManager();
+            BoxaPortabila.Play();
 
             //margine de la butonae facute alba
             btnBrowse.FlatStyle = FlatStyle.Flat;
@@ -80,7 +81,15 @@ namespace IP
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            //sunet
+            if (BoxaPortabila.IsPlaying())
+            {
+                BoxaPortabila.Stop();
+            }
+            else
+            {
+                BoxaPortabila.Resume();
+            }
         }
 
         private void groupBox2_Enter(object sender, EventArgs e)
@@ -95,7 +104,7 @@ namespace IP
 
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
-
+            BoxaPortabila.SetVolume(trackBar1.Value);
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
