@@ -34,6 +34,7 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.KeyText = new System.Windows.Forms.TextBox();
+            this.Music = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // button1
@@ -72,7 +73,7 @@
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 30);
             this.button4.TabIndex = 3;
-            this.button4.Text = "S4";
+            this.button4.Text = "Smart";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
@@ -95,11 +96,25 @@
             this.KeyText.TabIndex = 5;
             this.KeyText.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
+            // Music
+            // 
+            this.Music.AutoSize = true;
+            this.Music.Checked = true;
+            this.Music.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.Music.Location = new System.Drawing.Point(1017, 57);
+            this.Music.Name = "Music";
+            this.Music.Size = new System.Drawing.Size(64, 20);
+            this.Music.TabIndex = 6;
+            this.Music.Text = "Music";
+            this.Music.UseVisualStyleBackColor = true;
+            this.Music.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
             // TestUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1217, 591);
+            this.Controls.Add(this.Music);
             this.Controls.Add(this.KeyText);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
@@ -121,5 +136,6 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
         public System.Windows.Forms.TextBox KeyText;
+        private System.Windows.Forms.CheckBox Music;
     }
 }
