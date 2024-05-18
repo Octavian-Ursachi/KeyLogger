@@ -85,10 +85,12 @@ namespace IP
             if (BoxaPortabila.IsPlaying())
             {
                 BoxaPortabila.Stop();
+                btnMute.Text = "UNMUTE";
             }
             else
             {
                 BoxaPortabila.Resume();
+                btnMute.Text = "MUTE";
             }
         }
 
