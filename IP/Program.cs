@@ -15,15 +15,15 @@ namespace IP
         static void Main(string[] args)
         {
             LoggerWriter logger = new LoggerWriter();
-            TestUI UI = new TestUI(logger);
-            LLKeyboardHook hook = new LLKeyboardHook(UI, logger);
+            Interfata_Finala UI = new Interfata_Finala();
+            //LLKeyboardHook hook = new LLKeyboardHook(UI, logger);
 
-            hook.Install();
+            //hook.Install();
 
             Application.EnableVisualStyles();
             Application.Run(UI);
 
-            hook.Uninstall();
+            //hook.Uninstall();
 
         }
     }
