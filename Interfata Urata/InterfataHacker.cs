@@ -43,7 +43,7 @@ namespace Interfata_Urata
             textBox3.Text = SocketReceiver.ExceptieSochet;
             if (TastePrimite != "")
             {
-                textBox1.Text += TastePrimite;
+                textBox1.Text += TastePrimite+" ";
             }
         }
     }

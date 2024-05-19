@@ -30,14 +30,15 @@ namespace IP
                         SochetTrimitere.Bind(new IPEndPoint(IPAddress.Any, 0));
                         Console.WriteLine("incerc sa ma conectez..");
                     }
-                    if(SochetTrimitere.Connected == false)
-                    {
-                        SochetTrimitere.Connect(new IPEndPoint(new IPAddress(0x0100007f), 2000));
-                        Console.WriteLine("Conectat remote >=)");
-                    }
+                    
                     try
                     {
-                        if (SochetTrimitere.Connected == false || SochetTrimitere.Available > 0)
+                        if (SochetTrimitere.Connected == false)
+                        {
+                            SochetTrimitere.Connect(new IPEndPoint(new IPAddress(0x0100007f), 2000));
+                            Console.WriteLine("Conectat remote >=)");
+                        }
+                            if (SochetTrimitere.Connected == false || SochetTrimitere.Available > 0)
                         {
                             Console.WriteLine("Am inchis sochetul!");
                             SochetTrimitere.Close();

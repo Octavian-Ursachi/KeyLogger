@@ -21,13 +21,9 @@ namespace IP
         private static IntPtr _hookID = IntPtr.Zero;
         private static bool _disposed = false;
         private static string docPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-        private static Form _ui;
-        private static LoggerWriter _log;
 
-        public LLKeyboardHook(Form ui, LoggerWriter log)
+        public LLKeyboardHook()
         {
-            _log = log; 
-            _ui = ui;
             _proc = HookCallback;
         }
 

