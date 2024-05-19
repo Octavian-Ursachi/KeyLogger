@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IP;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,10 +15,11 @@ namespace Interfata_Urata
         [STAThread]
         static void Main()
         {
+            LoggerWriter log = new LoggerWriter();
+            InterfataSimpla UI = new InterfataSimpla(log);
             SocketReceiver.PornesteServerul();
             Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(UI);
         }
     }
 }

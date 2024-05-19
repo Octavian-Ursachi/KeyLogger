@@ -20,7 +20,7 @@ namespace IP
         {
             player = new MediaPlayer();
             String path = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
-            player.Open(new Uri(path + @"\IP\res\ElectronicBoom.wav"));
+            player.Open(new Uri(path + @"\IP\res\ElectroBoomVice.mp3"));
         }
         //C:\Users\ursac\source\repos\IP\IP\res\ElectronicBoom.wav
 

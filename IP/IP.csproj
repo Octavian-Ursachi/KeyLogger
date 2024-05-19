@@ -65,15 +65,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="SoundManager.cs" />
-    <Compile Include="VirtualKeyCodes.cs" />
-    <Compile Include="TestUI.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="TestUI.Designer.cs">
-      <DependentUpon>TestUI.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ILoggerWriter.cs" />
-    <Compile Include="LoggerWriter.cs" />
     <Compile Include="LLKeyboardHook.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -90,12 +81,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="TestUI.resx">
-      <DependentUpon>TestUI.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon2.ico" />
+    <Content Include="res\ElectroBoomVice.mp3" />
     <Content Include="res\logo.png" />
   </ItemGroup>
   <ItemGroup>
