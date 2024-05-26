@@ -1,4 +1,10 @@
-﻿using System;
+﻿/*
+ * Author: Serediuc Andrei-Gheorghe
+ * Date : 26.05.2024
+ */
+
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
