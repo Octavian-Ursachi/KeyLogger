@@ -1,4 +1,13 @@
-﻿using System;
+﻿/*
+* Author: Ursachi Octavian
+* Date: 26.05.2024
+* Functionality: This class is responsible for managing the playback of sound files. It supports operations 
+* such as play, stop, resume, mute, and setting volume. The sound files are embedded resources within the DLL.
+*/
+
+
+
+using System;
 using System.IO;
 using System.Reflection;
 using System.Windows.Media;

@@ -1,4 +1,9 @@
-﻿using System;
+﻿/*
+* Functionality: This class serves as the entry point for the user interface application. It initializes the main UI and installs a low-level keyboard hook.
+*/
+
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;

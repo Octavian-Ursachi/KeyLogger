@@ -1,4 +1,9 @@
-﻿using System;
+﻿/*
+* Functionality: This class serves as the entry point for the application. It initializes logging, user interface, and starts the socket server.
+*/
+
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
