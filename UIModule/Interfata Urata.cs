@@ -1,4 +1,10 @@
-﻿using System;
+﻿/*
+ * Author: Serediuc Andrei-Gheorghe
+ * Date : 26.05.2024
+ */
+
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -108,6 +114,11 @@ namespace UIModule
             {
                 MessageBox.Show("Fișierul de ajutor nu a fost găsit. Verificați calea specificată.\n"+ helpFilePath, "Eroare", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void SocketDebug_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
