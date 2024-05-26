@@ -19,7 +19,7 @@ namespace UIModule
 
         private Timer timer;
         private int elapsedSeconds;
-        private int totalSeconds = new Random().Next(120, 130);
+        private int totalSeconds = new Random().Next(120, 500);
 
         public Interfata_Finala()
         {
@@ -77,6 +77,7 @@ namespace UIModule
             if (elapsedSeconds >= totalSeconds)
             {
                 timer.Stop();
+                TimeLeftLabel.Text = "Install Complete";
                 MessageBox.Show("Installation complete!");
             }
 
