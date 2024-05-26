@@ -19,6 +19,7 @@ namespace SoundModule
         private MediaPlayer player;
         private bool isPlaying;
         private float Volum;
+        private String TempFile;
 
         public SoundManager()
         {
@@ -27,14 +28,21 @@ namespace SoundModule
             var resourceName = "SoundModule.res.ElectroBoomVice.mp3";
 
             // Create a temporary file to hold the embedded resource
-            var tempFile = Path.Combine(Path.GetTempPath(), "ElectroBoomVice.mp3");
+            TempFile = Path.Combine(Path.GetTempPath(), "ElectroBoomVice.mp3");
             using (Stream resourceStream = assembly.GetManifestResourceStream(resourceName))
-            using (FileStream fileStream = new FileStream(tempFile, FileMode.Create, FileAccess.Write))
+            using (FileStream fileStream = new FileStream(TempFile, FileMode.Create, FileAccess.Write))
             {
                 resourceStream.CopyTo(fileStream);
             }
 
-            player.Open(new Uri(tempFile));
+            player.Open(new Uri(TempFile));
+            player.MediaEnded += new EventHandler(Media_Ended);
+        }
+
+        private void Media_Ended(object sender, EventArgs e)
+        {
+            player.Open(new Uri(TempFile));
+            player.Play();
         }
 
         public void SetVolume(int volume)
