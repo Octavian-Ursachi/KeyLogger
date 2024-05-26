@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,7 +30,7 @@ namespace Interfata_Urata
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -91,6 +92,21 @@ namespace Interfata_Urata
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void Exit_Click(object sender, EventArgs e)
+        {
+
+            string helpFilePath = Path.Combine(Application.StartupPath, "Key Logger.chm");
+
+            if (File.Exists(helpFilePath))
+            {
+                Help.ShowHelp(this, helpFilePath);
+            }
+            else
+            {
+                MessageBox.Show("Fișierul de ajutor nu a fost găsit. Verificați calea specificată.\n"+ helpFilePath, "Eroare", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
