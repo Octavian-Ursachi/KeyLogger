@@ -146,6 +146,17 @@
             this.ButonClear.UseVisualStyleBackColor = true;
             this.ButonClear.Click += new System.EventHandler(this.ButonClear_Click);
             // 
+            // ButonClear
+            // 
+            this.ButonClear.Location = new System.Drawing.Point(314, 43);
+            this.ButonClear.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ButonClear.Name = "ButonClear";
+            this.ButonClear.Size = new System.Drawing.Size(113, 28);
+            this.ButonClear.TabIndex = 11;
+            this.ButonClear.Text = "Clear";
+            this.ButonClear.UseVisualStyleBackColor = true;
+            this.ButonClear.Click += new System.EventHandler(this.ButonClear_Click);
+            // 
             // InterfataSimpla
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
