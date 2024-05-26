@@ -18,6 +18,7 @@ namespace SoundModule
     {
         private MediaPlayer player;
         private bool isPlaying;
+        private int Volum;
 
         public SoundManager()
         {
@@ -38,6 +39,7 @@ namespace SoundModule
 
         public void SetVolume(int volume)
         {
+            Volum = volume;
             if (volume < 0 || volume > 100)
             {
                 throw new ArgumentOutOfRangeException(nameof(volume), "Volume must be between 0 and 100.");
@@ -48,21 +50,12 @@ namespace SoundModule
         public void Mute()
         {
             player.Volume = 0;
-        }
-
-        public void Stop()
-        {
-            player.Pause();
             isPlaying = false;
         }
-
-        public void Resume()
+        public void Unmute()
         {
-            if (!isPlaying)
-            {
-                player.Play();
-                isPlaying = true;
-            }
+            player.Volume = Volum;
+            isPlaying = true;
         }
 
         public bool IsPlaying()

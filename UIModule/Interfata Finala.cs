@@ -137,12 +137,12 @@ namespace UIModule
             //sunet
             if (BoxaPortabila.IsPlaying())
             {
-                BoxaPortabila.Stop();
+                BoxaPortabila.Mute();
                 btnMute.Text = "UNMUTE";
             }
             else
             {
-                BoxaPortabila.Resume();
+                BoxaPortabila.Unmute();
                 btnMute.Text = "MUTE";
             }
         }
