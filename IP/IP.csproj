@@ -72,6 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="res\Key Logger.chm" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Interfata Finala.resx">
