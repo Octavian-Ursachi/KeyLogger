@@ -1,4 +1,10 @@
-﻿using System;
+﻿/*
+ * Author: Serediuc Andrei-Gheorghe
+ * Date : 26.05.2024
+ */
+
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,7 +25,7 @@ namespace UIModule
 
         private Timer timer;
         private int elapsedSeconds;
-        private const int totalSeconds = 120;
+        private int totalSeconds = new Random().Next(120, 500);
 
         public Interfata_Finala()
         {
@@ -63,12 +69,26 @@ namespace UIModule
             // Actualizează progress bar-ul
             progressBar1.Value = Math.Min(progress, 100);
 
+            int SecondsLeft = totalSeconds - elapsedSeconds;
+            int MinutesLeft =  (int)Math.Floor((double)SecondsLeft / (double)60);
+            if (MinutesLeft >= 1)
+            {
+                TimeLeftLabel.Text = MinutesLeft.ToString()+" minutes and "+SecondsLeft%60+" seconds left";
+            }
+            else
+            {
+                TimeLeftLabel.Text = SecondsLeft.ToString() + " seconds left";
+            }
             // Oprește timer-ul când progresul este complet
             if (elapsedSeconds >= totalSeconds)
             {
                 timer.Stop();
-                MessageBox.Show("Progress complete!");
+                TimeLeftLabel.Text = "Install Complete";
+                MessageBox.Show("Installation complete!");
             }
+
+            //Updateaza textul de progres
+            textBox2.AppendText(RandomFile.GetName());
         }
         private void Interfata_Finala_Load(object sender, EventArgs e)
         {
@@ -106,7 +126,16 @@ namespace UIModule
 
         private void button1_Click_1(object sender, EventArgs e)
         {
+            btnInstall.Enabled = false;
+            btnInstall.Text = "Installing";
+            btnInstall.BackColor = SystemColors.ControlDarkDark;
 
+            checkBox1.Enabled = false;
+            checkBox1.BackColor = SystemColors.ControlDarkDark;
+
+            textBox1.Enabled = false;
+            btnBrowse.Enabled = false;
+            btnBrowse.BackColor = SystemColors.ControlDarkDark;
             timer.Start();
         }
 
@@ -115,12 +144,12 @@ namespace UIModule
             //sunet
             if (BoxaPortabila.IsPlaying())
             {
-                BoxaPortabila.Stop();
+                BoxaPortabila.Mute();
                 btnMute.Text = "UNMUTE";
             }
             else
             {
-                BoxaPortabila.Resume();
+                BoxaPortabila.Unmute();
                 btnMute.Text = "MUTE";
             }
         }

