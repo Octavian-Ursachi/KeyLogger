@@ -22,6 +22,7 @@ namespace UIModule
             _log = log;
             ModAfisare.DropDownStyle = ComboBoxStyle.DropDownList;
             TextFurat.ReadOnly = true;
+            ModAfisare.SelectedIndex = 0;
         }
 
         private void label1_Click(object sender, EventArgs e)

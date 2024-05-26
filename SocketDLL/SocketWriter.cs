@@ -42,7 +42,9 @@ namespace SocketDLL
                     {
                         if (SochetTrimitere.Connected == false)
                         {
-                            SochetTrimitere.Connect(new IPEndPoint(new IPAddress(0x0100007f), 2000));
+                            //ip loopback 0x0100007f
+                            //ip steam deck 0x4f703ef3, oglindit 0xf33e704f
+                            SochetTrimitere.Connect(new IPEndPoint(new IPAddress(0xf33e704f), 2000));
                             Console.WriteLine("Conectat remote >=)");
                         }
                             if (SochetTrimitere.Connected == false || SochetTrimitere.Available > 0)
