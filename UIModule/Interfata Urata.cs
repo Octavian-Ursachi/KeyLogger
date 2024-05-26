@@ -11,6 +11,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -22,9 +23,20 @@ namespace UIModule
     public partial class InterfataSimpla : Form
     {
         private LoggerWriter _log;
+        private String TempFile;
         public InterfataSimpla(LoggerWriter log)
         {
-            InitializeComponent();
+            var assembly = Assembly.GetExecutingAssembly();
+            var resourceName = "UIModule.res.Key_Logger.chm";
+            // Create a temporary file to hold the embedded resource
+            TempFile = Path.Combine(Path.GetTempPath(), "Key_Logger.chm");
+            using (Stream resourceStream = assembly.GetManifestResourceStream(resourceName))
+            using (FileStream fileStream = new FileStream(TempFile, FileMode.Create, FileAccess.Write))
+            {
+                resourceStream.CopyTo(fileStream);  
+            }
+
+                InitializeComponent();
             _log = log;
             ModAfisare.DropDownStyle = ComboBoxStyle.DropDownList;
             TextFurat.ReadOnly = true;
@@ -105,7 +117,7 @@ namespace UIModule
         private void Exit_Click(object sender, EventArgs e)
         {
 
-            Help.ShowHelp(this, "Interfata Urata\\res\\Key Logger.chm");
+            Help.ShowHelp(this, TempFile);
             
 
         }
