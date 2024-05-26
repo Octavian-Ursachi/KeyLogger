@@ -1,4 +1,11 @@
-﻿using System;
+﻿/*
+* Author: Stoica Viorel
+* Date: 26.05.2024
+* Functionality: This class implements a socket receiver that listens for incoming TCP connections and receives data.
+*/
+
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;

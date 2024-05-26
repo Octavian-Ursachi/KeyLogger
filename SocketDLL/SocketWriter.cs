@@ -1,4 +1,11 @@
-﻿using System;
+﻿/*
+Author: Stoica Viorel
+Date: 26.05.2024
+Functionality: This class implements a socket writer that sends messages over TCP/IP.
+*/
+
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;

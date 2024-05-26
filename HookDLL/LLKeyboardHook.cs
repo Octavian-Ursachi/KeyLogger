@@ -1,4 +1,11 @@
-﻿using Microsoft.Win32;
+﻿/*
+* Author: Ursachi Octavian
+* Date: 26.05.2024
+* Functionality: This class provides a low-level keyboard hook for capturing key presses and sending them to a socket writer for logging.
+*/
+
+
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

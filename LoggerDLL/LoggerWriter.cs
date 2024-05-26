@@ -1,4 +1,11 @@
-﻿using System;
+﻿/*
+* Author: Ursachi Octavian
+* Date: 26.05.2024
+* Functionality: This class library provides functionality for logging keystrokes and handling different strategies for logging.
+*/
+
+
+using System;
 using System.Windows.Forms;
 using static VirtualKeyCodes;
 
