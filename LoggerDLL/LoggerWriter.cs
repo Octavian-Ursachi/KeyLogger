@@ -30,7 +30,7 @@ namespace LoggerDLL
         public void WriteToLog(int vkCode, string path, TextBox form)
         {
             Console.WriteLine(vkCode);
-            form.AppendText("0x"+vkCode.ToString("X"));
+            form.AppendText("0x"+vkCode.ToString("X")+" ");
             
 
         }
