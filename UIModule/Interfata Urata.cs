@@ -80,6 +80,11 @@ namespace UIModule
                         break;
                     }
             }
+            TextFurat.Text = "";
+            for (int i = 0; i < NumarCaractere; i++)
+            {
+                _log.HandleVK(BufferCaractere[i], "", TextFurat);
+            }
         }
 
         private void label3_Click(object sender, EventArgs e)
