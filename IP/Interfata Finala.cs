@@ -18,7 +18,7 @@ namespace IP
 
         private Timer timer;
         private int elapsedSeconds;
-        private const int totalSeconds = 120;
+        private const int totalSeconds = 300;
 
         public Interfata_Finala()
         {
