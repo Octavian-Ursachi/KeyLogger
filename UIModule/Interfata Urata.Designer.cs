@@ -1,4 +1,4 @@
-﻿namespace Interfata_Urata
+﻿namespace UIModule
 {
     partial class InterfataSimpla
     {

@@ -1,4 +1,4 @@
-﻿namespace IP
+﻿namespace UIModule
 {
     partial class Interfata_Finala
     {

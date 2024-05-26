@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace IP
+namespace SocketDLL
 {
 
     public class SocketWriter

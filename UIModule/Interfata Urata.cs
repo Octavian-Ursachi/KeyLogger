@@ -1,5 +1,4 @@
-﻿using IP;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,8 +8,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using LoggerDLL;
+using SocketDLL;
 
-namespace Interfata_Urata
+namespace UIModule
 {
     public partial class InterfataSimpla : Form
     {
@@ -77,7 +78,7 @@ namespace Interfata_Urata
                     if (code != "")
                     {
                         int vkCode = Int16.Parse(code);
-                        _log.HandleVK(vkCode, "", this);
+                        _log.HandleVK(vkCode, "", TextFurat);
                     }
                 }
             }

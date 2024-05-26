@@ -8,9 +8,10 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SoundModule;
 
 
-namespace IP
+namespace UIModule
 {
     public partial class Interfata_Finala : Form
     {
