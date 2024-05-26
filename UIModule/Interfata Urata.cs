@@ -134,14 +134,6 @@ namespace UIModule
         private void SocketDebug_TextChanged(object sender, EventArgs e)
         {
 
-            if (File.Exists(helpFilePath))
-            {
-                Help.ShowHelp(this, helpFilePath);
-            }
-            else
-            {
-                MessageBox.Show("Fișierul de ajutor nu a fost găsit. Verificați calea specificată.\n"+ helpFilePath, "Eroare", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
         private void ButonClear_Click(object sender, EventArgs e)
