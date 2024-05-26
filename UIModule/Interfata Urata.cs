@@ -105,16 +105,9 @@ namespace UIModule
         private void Exit_Click(object sender, EventArgs e)
         {
 
-            string helpFilePath = Path.Combine(Application.StartupPath, "Key Logger.chm");
+            Help.ShowHelp(this, "Interfata Urata\\res\\Key Logger.chm");
+            
 
-            if (File.Exists(helpFilePath))
-            {
-                Help.ShowHelp(this, helpFilePath);
-            }
-            else
-            {
-                MessageBox.Show("Fișierul de ajutor nu a fost găsit. Verificați calea specificată.\n"+ helpFilePath, "Eroare", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
         private void SocketDebug_TextChanged(object sender, EventArgs e)

@@ -37,6 +37,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.SocketDebug = new System.Windows.Forms.TextBox();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.SuspendLayout();
             // 
             // label1
@@ -123,6 +124,10 @@
             this.SocketDebug.TabIndex = 10;
             this.SocketDebug.TextChanged += new System.EventHandler(this.SocketDebug_TextChanged);
             // 
+            // helpProvider1
+            // 
+            this.helpProvider1.HelpNamespace = "E:\\PROIECT IP\\Interfata Urata\\res\\Key Logger.chm";
+            // 
             // InterfataSimpla
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -137,6 +142,7 @@
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "InterfataSimpla";
+            this.helpProvider1.SetShowHelp(this, true);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Text Capture";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -154,6 +160,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.TextBox SocketDebug;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }
 
