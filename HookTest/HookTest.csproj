@@ -3,8 +3,9 @@
 	<PropertyGroup>
 		<TargetFramework>net4.8</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
+		<LangVersion>10.0</LangVersion>
 		<!-- Remove or set Nullable to 'disable' -->
-		<Nullable>disable</Nullable>
+		<Nullable>enable</Nullable>
 
 		<IsPackable>false</IsPackable>
 		<IsTestProject>true</IsTestProject>
@@ -21,6 +22,10 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\HookDLL\HookDLL.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Reference Include="System.Net.Http" />
 	</ItemGroup>
 
 	<ItemGroup>
