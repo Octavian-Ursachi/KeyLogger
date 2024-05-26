@@ -13,6 +13,7 @@ namespace IP
 {
     public class Program
     {
+        [STAThread]
         public static void Main(string[] args)
         {
             AppLogicModule.ProgramUI.Main();

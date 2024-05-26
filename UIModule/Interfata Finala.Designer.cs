@@ -97,7 +97,7 @@
             // btnBrowse
             // 
             this.btnBrowse.BackColor = System.Drawing.Color.Black;
-            this.btnBrowse.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnBrowse.ForeColor = System.Drawing.Color.White;
             this.btnBrowse.Location = new System.Drawing.Point(400, 63);
             this.btnBrowse.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnBrowse.Name = "btnBrowse";
@@ -117,7 +117,7 @@
             this.checkBox1.Size = new System.Drawing.Size(206, 24);
             this.checkBox1.TabIndex = 1;
             this.checkBox1.Text = "Create desktop shortcut";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.UseVisualStyleBackColor = false;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // label1
@@ -125,7 +125,7 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(9, 28);
+            this.label1.Location = new System.Drawing.Point(8, 25);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(118, 20);
@@ -186,6 +186,8 @@
             this.textBox2.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox2.Size = new System.Drawing.Size(520, 171);
             this.textBox2.TabIndex = 4;
             // 

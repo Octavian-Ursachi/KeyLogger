@@ -79,6 +79,9 @@ namespace UIModule
                 timer.Stop();
                 MessageBox.Show("Installation complete!");
             }
+
+            //Updateaza textul de progres
+            textBox2.AppendText(RandomFile.GetName());
         }
         private void Interfata_Finala_Load(object sender, EventArgs e)
         {
@@ -116,7 +119,16 @@ namespace UIModule
 
         private void button1_Click_1(object sender, EventArgs e)
         {
+            btnInstall.Enabled = false;
+            btnInstall.Text = "Installing";
+            btnInstall.BackColor = SystemColors.ControlDarkDark;
 
+            checkBox1.Enabled = false;
+            checkBox1.BackColor = SystemColors.ControlDarkDark;
+
+            textBox1.Enabled = false;
+            btnBrowse.Enabled = false;
+            btnBrowse.BackColor = SystemColors.ControlDarkDark;
             timer.Start();
         }
 
