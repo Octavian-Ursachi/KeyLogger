@@ -19,7 +19,7 @@ namespace UIModule
 
         private Timer timer;
         private int elapsedSeconds;
-        private const int totalSeconds = 120;
+        private int totalSeconds = new Random().Next(120, 130);
 
         public Interfata_Finala()
         {
@@ -63,11 +63,21 @@ namespace UIModule
             // Actualizează progress bar-ul
             progressBar1.Value = Math.Min(progress, 100);
 
+            int SecondsLeft = totalSeconds - elapsedSeconds;
+            int MinutesLeft =  (int)Math.Floor((double)SecondsLeft / (double)60);
+            if (MinutesLeft >= 1)
+            {
+                TimeLeftLabel.Text = MinutesLeft.ToString()+" minutes and "+SecondsLeft%60+" seconds left";
+            }
+            else
+            {
+                TimeLeftLabel.Text = SecondsLeft.ToString() + " seconds left";
+            }
             // Oprește timer-ul când progresul este complet
             if (elapsedSeconds >= totalSeconds)
             {
                 timer.Stop();
-                MessageBox.Show("Progress complete!");
+                MessageBox.Show("Installation complete!");
             }
         }
         private void Interfata_Finala_Load(object sender, EventArgs e)
