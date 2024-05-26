@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -61,6 +62,11 @@ namespace UIModule
                         _log.SetStrategy(new SmartStrategy());
                         break;
                     }
+            }
+            TextFurat.Text = "";
+            for (int i = 0; i < NumarCaractere; i++)
+            {
+                _log.HandleVK(BufferCaractere[i], "", TextFurat);
             }
         }
 
