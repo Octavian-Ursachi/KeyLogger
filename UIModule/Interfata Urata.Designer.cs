@@ -128,6 +128,10 @@
             // 
             this.helpProvider1.HelpNamespace = "E:\\PROIECT IP\\Interfata Urata\\res\\Key Logger.chm";
             // 
+            // helpProvider1
+            // 
+            this.helpProvider1.HelpNamespace = "E:\\PROIECT IP\\Interfata Urata\\res\\Key Logger.chm";
+            // 
             // InterfataSimpla
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
